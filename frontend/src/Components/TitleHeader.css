@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lora&display=swap");
+
+.container {
+    display: flex;               
+    justify-content: center;     
+    align-items: center; 
+    flex-direction: column;        
+    height: 100%;                
+    text-align: center; 
+}
+
+.header { 
+    font-family: 'Lora', sans-serif;
+    font-size: 40px;
+    margin-top: 100px;
+    overflow: hidden;
+}
+
+.header2 { 
+    font-family: 'Lora', sans-serif;
+    font-size: 20px;
+    margin-top: 10px;
+    max-width: 50%; 
+    display: inline-block;
+    overflow-wrap: break-word; 
+    word-wrap: break-word; 
+    color: gray;
+}
+
+.top-right {
+    position: absolute;  
+    top: 10px;          
+    right: 10px;         
+    width: 150px;        
+    height: auto;        
+}
+
+
+.sign-up {
+    margin: 20px auto; 
+    padding: 10px 20px; 
+    font-size: 16px;
+    cursor: pointer;
+    display: block; 
+    background-color: #4f46e5;
+    color: white;
+    border: none;
+    border-radius: 4px; 
+    box-shadow: 3px 3px 0px black;
+    transition: all 0.3s ease; 
+    font-family: 'Ubuntu', sans-serif;
+    text-decoration: none;
+}
+.no-underline{
+    text-decoration: none;
+}
+.sign-up:hover {
+    box-shadow: none; 
+    transform: translate(3px, 3px); 
+}
+
+.icon-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 20px; /* Adds spacing around each icon-text pair */
+}
+
+.icon-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 20px; /* Adds horizontal spacing between icons */
+}
+
+.easy_icon, .goal_icon, .time_icon {
+    margin-bottom: 10px; /* Adds spacing between the icon and the text */
+    margin-top: 50px;
+}
+
+.text1, .text2, .text3 {
+    font-family: 'Lora', sans-serif;
+    font-size: 20px;
+    color: gray;
+    margin-top: 50px;
+}

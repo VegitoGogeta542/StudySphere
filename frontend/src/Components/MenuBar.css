@@ -1,0 +1,82 @@
+.menubar {
+  display: flex;
+  flex-direction: column;
+  width: 0; /* Initially hidden */
+  height: 100vh; /* Full height of the viewport */
+  background-color: #000000;
+  padding: 20px 0;
+  position: fixed;
+  left: 0;
+  top: 0;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* Hide content when collapsed */
+  transition: width 0.3s ease; /* Smooth transition */
+  z-index: 1001; /* Ensure it is above the hover area */
+}
+
+.container {
+  display: flex;        
+  width: 100%;      
+}
+
+.box {
+  flex: 1;          
+  margin: 10px;         
+  background-color: #e9e9e9;
+  text-align: center;   
+  padding: 20px;
+  border: 1px solid #000000;   
+  border-radius: 30px; 
+  display: flex; /* Ensure flexbox for proper alignment */
+  flex-direction: column; 
+  align-items: center; /* Center horizontally */
+  justify-content: center; /* Center vertically */
+
+
+}
+
+.box a {
+  display: flex;
+  flex-direction: column; /* Stack text above the image */
+  align-items: center; /* Center horizontally */
+  justify-content: flex-start; /* Push text to the top */
+  width: 100%; /* Ensure it takes the full box width */
+  height: 100%; /* Ensure it takes the full box height */
+  text-decoration: none;
+  color: black;
+}
+
+
+
+.box a:hover {
+  color: #4f46e5;
+}
+
+.hover-area {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 20px; /* Width of the hover area */
+  height: 100vh;
+  z-index: 1000; /* Ensure it is below the menubar */   
+}
+
+.hover-area:hover + .menubar,
+.menubar:hover {
+  width: 200px; /* Expand the menu bar on hover */
+}
+
+.icon {
+  display: block;
+  margin: 0 auto; /* Centers the icon horizontally */
+  position: relative;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.box span {
+  margin-top: auto; /* Pushes text to the bottom */
+  padding-bottom: 10px; /* Adds some space from the bottom */
+}
+
+
