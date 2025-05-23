@@ -4,6 +4,8 @@ import MenuBar from '../Components/MenuBar';
 import passwordIcon from '../Assets/password.png';
 import mailIcon from '../Assets/mail.png';
 import personIcon from '../Assets/person.png';
+import { Link } from 'react-router-dom';
+
 
 
 
@@ -55,7 +57,9 @@ function SettingsPage() {
     <MenuBar />
     
 
-
+    <Link to='/settings/login'>
+    <button className='save-button'>Already have an account? Login Here!</button>
+    </Link>
     
     <div className='sign-up-screen'>
       <div className='header-container'>

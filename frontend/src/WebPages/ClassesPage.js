@@ -1,5 +1,6 @@
 import React from 'react';
 import './ClassesPage.css';
+import MenuBar from '../Components/MenuBar';
 import Cards from "../Components/Cards";
 import { Link } from 'react-router-dom';
 import trainingIcon from '../Assets/training.png';
@@ -7,6 +8,7 @@ import { useState } from 'react';
 function ClassesPage() {
   return (
     <>
+      <MenuBar />
       <div className='headerClasses'>It's Time to Build Your Study Plan</div>
       <div className='icon_container_classespage'>
         <h1>Let's get Organized.</h1>

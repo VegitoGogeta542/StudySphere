@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+
+
+
+.login-side-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50vw;
+    height: 100vh; 
+    background-color: #000000;
+}
+
+.login-screen {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    justify-content: space-between;
+    width: 70vh;
+    height: 50vh; 
+    margin: 0 auto; /* Center the container on the page */
+    padding: 20px; /* Add some spacing */
+    border: 1px solid #ccc; /* Add a border for visual structure */
+    border-radius: 10px; /* Round the corners */
+    background-color: #ffffff; /* Light background color */
+    margin-top: 100px;  
+}
+
+.login-header {
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    font-size: 2rem; 
+    color: #000; 
+}
+
+.input2-group {
+    display: flex; 
+    align-items: center;
+    margin-bottom: 15px; 
+    width: 100%;
+    position: relative; /* Allow absolute positioning of icons */
+}
+
+.input2 {
+  width: 100%; /* Ensure the input takes full width of the container */
+  padding: 10px 10px 10px 30px; /* Add padding to the left so text doesn't overlap the div */
+  font-size: 16px;
+  box-sizing: border-box; /* Ensure padding is included in the total width */
+  position: relative; /* Allow z-index to be applied */
+}
+
+.input2_box {
+    flex: 1; /* Allow input box to take up available space */
+    width: 100% !important;
+    height: 40px;
+    margin: 10px 0; /* Optional: Adjust margin if needed */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding-left: 45px; /* Space for the icon inside the input */
+    font-size: 16px;
+    background-color: rgb(243, 242, 242);
+    box-sizing: border-box; /* Ensure padding and border are included in width */
+    
+  }
+
+  .inside-box2 {
+  position: absolute; /* Position it inside the container */
+  top: 50%; /* Position vertically */
+  left: 50px; 
+  transform: translateY(-50%); /* Center it vertically */
+  background: none;
+  padding: 5px;
+  font-size: 14px;
+  color: #666; /* Dark gray text */
+  pointer-events: none;
+  transition: opacity 0.3s ease; 
+
+}
+
+.input2_box:focus + .inside-box2 {
+    opacity: 0;
+     
+
+}

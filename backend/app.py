@@ -85,8 +85,10 @@ def add_class():
 
     return jsonify({'message': 'Class added successfully!'}), 201
 
-@app.route('/login', methods=['POST'])
+@app.route('/login', methods=['POST', 'OPTIONS'])
 def login():
+    if request.method == 'OPTIONS':
+        return '', 200
     data = request.json
     email = data.get('email')
     password = data.get('password')
@@ -99,7 +101,11 @@ def login():
 
 
     if user and bcrypt.checkpw(password.encode('utf-8'), user.password.encode('utf-8')):
-        access_token = create_access_token(identity=user.id) 
+        access_token = create_access_token(identity={
+            "id": user.id,
+            "email": user.email,
+            "name": user.name  # Add this if your user model has it
+        })
         return jsonify({'token': access_token, 'message': 'Login successful!'}), 200
 
     return jsonify({'error': 'Invalid email or password'}), 401

@@ -1,0 +1,40 @@
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 0;
+  overflow: hidden;
+  background-color: #707070;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 16px;
+  padding: 0;
+  box-sizing: border-box;
+  transition: height 0.3s ease, padding 0.3s ease;
+  z-index: 1001;
+}
+
+.topbar-hover-area {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 100vw;
+  z-index: 1000;
+  background: transparent; /* just to make sure it's "real" for hover */
+}
+
+/* On hover, expand the topbar */
+.topbar-hover-area:hover + .topbar,
+.topbar:hover {
+  height: 80px;
+  padding: 20px 0;
+}
+
+.profile-picture {
+    width: 50px;
+    height: 50px;
+}
