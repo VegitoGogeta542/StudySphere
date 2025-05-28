@@ -5,16 +5,18 @@ import TopBar from './Components/TopBar'; // ✅ Correct import
 import './Components/TitleHeader.css';
 import ClassesPage from './WebPages/ClassesPage';
 import { AddClassPage } from './WebPages/ClassesPage';
-import SettingsPage from './WebPages/SettingsPage';
+import SignUpPage from './WebPages/SignUpPage';
 import Logo from './Assets/StudySphereLogo.png';
 import Easy from './Assets/easy.png';
 import Goal from './Assets/goal.png';
 import Time from './Assets/time.png';
 import 'hover.css/css/hover-min.css';
+import SettingsPage from './WebPages/SettingsPage';
 import LoginPage from './WebPages/LoginPage';
 import { ViewClassesPage } from './WebPages/ClassesPage';
 import {jwtDecode} from 'jwt-decode';
-import Person from './Assets/person.png';
+
+
 
 // ✅ Move HomeLayout INSIDE App so it can access user
 function App() {
@@ -78,6 +80,7 @@ function App() {
         <Route path="/classes/add" element={<AddClassPage />} />
         <Route path="/assignments" />
         <Route path="/settings" element={<SettingsPage />} />
+        <Route path="/settings/signup" element={<SignUpPage />} />
         <Route path="/classes/view" element={<ViewClassesPage />} />
         <Route path="/settings/login" element={<LoginPage />} />
       </Routes>

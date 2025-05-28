@@ -7,6 +7,7 @@
 
 .login-side-container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 50vw;
@@ -86,3 +87,17 @@
      
 
 }
+.save-button-login {
+    position: relative;
+    background-color: #4f46e5;
+    color: white; 
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px; 
+    font-weight: 500; 
+    border: none; 
+    border-radius: 25px; 
+    padding: 15px 20px; 
+    cursor: pointer; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    transition: all 0.3s ease;
+  }

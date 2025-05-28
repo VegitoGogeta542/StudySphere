@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "./LoginPage.css";
 import mailIcon from "../Assets/mail.png";
 import passwordIcon from "../Assets/password.png";
@@ -48,6 +49,9 @@ const loginUser = async () => {
 
   return (
     <div className="login-side-container">
+      <Link to='/settings/signup'>
+          <button className='save-button-login'>Need have an account? Sign up here!</button>
+      </Link>
       <div className="login-screen">
         <div className="login-header">
           <h1 className="login-header">Login</h1>
