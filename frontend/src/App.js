@@ -13,8 +13,9 @@ import Time from './Assets/time.png';
 import 'hover.css/css/hover-min.css';
 import SettingsPage from './WebPages/SettingsPage';
 import LoginPage from './WebPages/LoginPage';
-import { ViewClassesPage } from './WebPages/ClassesPage';
+
 import {jwtDecode} from 'jwt-decode';
+import ViewClassesPage from './WebPages/ViewClassesPage';
 
 
 
@@ -83,6 +84,7 @@ function App() {
         <Route path="/settings/signup" element={<SignUpPage />} />
         <Route path="/classes/view" element={<ViewClassesPage />} />
         <Route path="/settings/login" element={<LoginPage />} />
+        
       </Routes>
     </Router>
   );

@@ -1,7 +1,6 @@
 import React from 'react';
 import './ClassesPage.css';
 import MenuBar from '../Components/MenuBar';
-import Cards from "../Components/Cards";
 import { Link } from 'react-router-dom';
 import trainingIcon from '../Assets/training.png';
 import { useState } from 'react';
@@ -21,7 +20,7 @@ function ClassesPage() {
             <span className="left-outline"></span>
           </button>
           <button className="draw-outline-btn larger_button">
-            <Link to = "/classes/add" className='no-underline'>
+            <Link to = "/classes/view" className='no-underline'>
               <span>View Classes</span>
               <span className="bottom-outline"></span>
             </Link>
@@ -40,34 +39,44 @@ function ClassesPage() {
 export default ClassesPage;
 
 function AddClassPage() {
-    const [AddClass, setAddClass] = useState("");
+    const [addClass, setaddClass] = useState("");
 
-    const changeAddClass = (event) => {
-        setAddClass(event.target.value);
+    const changeaddClass = (event) => {
+        setaddClass(event.target.value);
     };
 
     const saveClass = async () => {
-        const payload = {AddClass};
-    
-        try {
-          const response = await fetch('http://127.0.0.1:5000/register', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(payload),
-          });
-    
-          const data = await response.json();
-          if (response.ok) {
-            alert(data.message); // Success message from the backend
-          } else {
-            alert(`Error: ${data.error}`); // Error message from the backend
-          }
-        } catch (error) {
-          alert(`Error: ${error.message}`);
-        }
-      };
+  const token = localStorage.getItem('token');
+
+  try {
+    const response = await fetch('http://127.0.0.1:5000/add_class', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ classname: addClass }),
+    });
+
+    const data = await response.json(); // This can fail if response body is empty
+
+    if (response.ok) {
+      alert(data.message || "Class added successfully!");
+    } else {
+      console.error("Backend Error:", data); // Log for debug
+      alert(`Error: ${data.error || "Something went wrong."}`);
+    }
+    if (data.msg === "Token has expired") {
+      alert("Session expired. Please log in again.");
+      localStorage.removeItem("token");
+      window.location.href = "/login";
+}
+  } catch (error) {
+    console.error("Fetch Error:", error);
+    alert(`Network or JSON error: ${error.message || "Unknown error"}`);
+  }
+};
+
   
   return (
     <>
@@ -77,8 +86,8 @@ function AddClassPage() {
       type="text" 
       className="class-name" 
       placeholder="Class name"
-      value={AddClass}
-      onChange={changeAddClass}
+      value={addClass}
+      onChange={changeaddClass}
        />
       <button className="add-class-button" onClick={saveClass}>Add</button>
 
@@ -88,14 +97,4 @@ function AddClassPage() {
 }
 export { AddClassPage };
 
-function ViewClassesPage() {
-  return (
-    <>
-      <h1 className='header1'>View Classes</h1>
-      <p className='header1'>Here are your classes</p>
-      <div className='App'><Cards /></div>
-    </>
-  );
-}
 
-export { ViewClassesPage };

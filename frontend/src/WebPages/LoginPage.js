@@ -12,7 +12,7 @@ function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const changePassword = (event) => {
+  const changePassword = (event) => { 
     setPassword(event.target.value);
   };
 
@@ -35,6 +35,7 @@ const loginUser = async () => {
     const data = await response.json();
     if (response.ok) {
       localStorage.setItem("token", data.token); 
+      localStorage.setItem("userName", data.user.name);
       window.location.href = "/home"; 
       alert("Login successful!");
       // Redirect user to dashboard or protected route
@@ -50,7 +51,7 @@ const loginUser = async () => {
   return (
     <div className="login-side-container">
       <Link to='/settings/signup'>
-          <button className='save-button-login'>Need have an account? Sign up here!</button>
+          <button className='save-button-login'>Need an account? Sign up here!</button>
       </Link>
       <div className="login-screen">
         <div className="login-header">

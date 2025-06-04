@@ -3,7 +3,7 @@ from flask_cors import CORS
 from dbmodels import User, Class, Assignment, Schedule, session
 import bcrypt
 import uuid  # For generating unique user IDs
-from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
+from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity, verify_jwt_in_request
 
 
 
@@ -12,11 +12,10 @@ app = Flask(__name__)
 app.config['JWT_SECRET_KEY'] = '2d2b41cb07d678262105681df33c2a94450eca5d29c7eeb481253a31835eec87'  # Change this to a strong, random key
 jwt = JWTManager(app)  # Add this line to initialize JWTManager
 
-CORS(app, resources={r"/*": {
-    "origins": "http://localhost:3000",
-    "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    "allow_headers": ["Content-Type", "Authorization"]
+CORS(app, supports_credentials=True, resources={r"/*": {
+    "origins": "http://localhost:3000"
 }})
+
 
 @app.route('/')
 def home():
@@ -76,7 +75,7 @@ def add_class():
 
 
     new_class = Class(
-        classname=classname,
+        name=classname,
         user_id=current_user.id  # Associate the class with the logged-in user
     )
   
@@ -84,6 +83,20 @@ def add_class():
     session.commit()
 
     return jsonify({'message': 'Class added successfully!'}), 201
+
+@app.route('/get_classes', methods=['GET', 'OPTIONS'])
+@jwt_required()
+def get_classes():
+    if request.method == 'OPTIONS':
+        return '', 204
+
+    verify_jwt_in_request()
+    current_user_id = get_jwt_identity()
+    user_classes = session.query(Class).filter_by(user_id=current_user_id).all()
+    classes_data = [{"id": c.id, "classname": c.name} for c in user_classes]
+    return jsonify(classes_data), 200
+
+
 
 @app.route('/login', methods=['POST', 'OPTIONS'])
 def login():
@@ -101,12 +114,8 @@ def login():
 
 
     if user and bcrypt.checkpw(password.encode('utf-8'), user.password.encode('utf-8')):
-        access_token = create_access_token(identity={
-            "id": user.id,
-            "email": user.email,
-            "name": user.name  # Add this if your user model has it
-        })
-        return jsonify({'token': access_token, 'message': 'Login successful!'}), 200
+        access_token = create_access_token(identity=str(user.id))
+        return jsonify({'token': access_token, 'message': 'Login successful!', 'user' :{'id':user.id,'name': user.name,'email': user.email}}), 200
 
     return jsonify({'error': 'Invalid email or password'}), 401
 
